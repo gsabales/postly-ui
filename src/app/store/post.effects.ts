@@ -21,4 +21,16 @@ export class PostEffects {
       )
     )
   ));
+
+  public createPost$ = createEffect(() => this.actions$.pipe(
+    ofType(PostActions.createPost),
+    mergeMap(({ userId, post }) =>
+      this.postService.createPost$(userId, post).pipe(
+        map(post => PostActions.createPostSuccess({ post })),
+        catchError( error =>
+          of(PostActions.createPostFail({ error: error.message }))
+        )
+      )
+    )
+  ));
 }

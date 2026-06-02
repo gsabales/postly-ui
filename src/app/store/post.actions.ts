@@ -7,7 +7,7 @@ export const loadPostsSuccess = createAction('[Post API] Load Posts Success', pr
 
 export const loadPostsFail = createAction('[Post API] Load Posts Fail', props<{ error: string }>());
 
-export const createPost = createAction('[Post] Create Post', props<{ post: Partial<Post> }>());
+export const createPost = createAction('[Post] Create Post', props<{ userId: string, post: Post }>());
 
 export const createPostSuccess = createAction('[Post API] Create Post Success', props<{ post: Post }>());
 

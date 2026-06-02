@@ -11,4 +11,8 @@ export class PostService {
   getPosts$(userId: string): Observable<Post[]> {
     return this.http.get<Post[]>(`http://localhost:8080/api/postly/users/${userId}/post`);
   }
+
+  createPost$(userId: string, post: Post): Observable<Post> {
+    return this.http.post(`http://localhost:8080/api/postly/users/${userId}/post`, post);
+  }
 }

@@ -112,6 +112,32 @@
               <app-comment-block></app-comment-block>
               <hr>
               <ul class="list-unstyled mt-5">
+
+
+
+              @for (post of posts$ | async; track $index) {
+                <li class="row align-items-center mb-5">
+                  <div class="col-auto">
+                    <div class="profile-picture bg-gradient bg-primary">
+                      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="44" height="44">
+                    </div>
+                  </div>
+                  <div class="col ps-0">
+                    <div>
+                      <a href="#" class="fw-medium">John Doe</a>
+                      <small class="text-muted ms-2">1 hour ago</small>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col ps-0" style="margin-left: 4.5rem;">{{ post.content }}</div>
+                  </div>
+                </li>
+              }
+
+
+
+
+
                 <li class="media">
                   <div class="profile-picture bg-gradient bg-primary mb-4">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="44" height="44">
