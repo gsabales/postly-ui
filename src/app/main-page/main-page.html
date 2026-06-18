@@ -114,7 +114,6 @@
               <ul class="list-unstyled mt-5">
 
 
-
               @for (post of posts$ | async; track $index) {
                 <li class="row align-items-center mb-5">
                   <div class="col-auto">
@@ -129,13 +128,53 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col ps-0" style="margin-left: 4.5rem;">{{ post.content }}</div>
+                    <!-- VIEW MODE -->
+                    @if (editingPostId !== post.id) {
+                      <div class="col ps-0 post-margin">
+                        {{ post.content }}
+                      </div>
+                    }
+
+                    <!-- EDIT MODE -->
+                    @if (editingPostId === post.id) {
+                      <textarea
+                        class="form-control ps-0 post-margin"
+                        [(ngModel)]="contentMap[post.id]">
+                      </textarea>
+                    }
+
+                    <div class="media-feed-control post-margin">
+                      <a href="#">
+                        <i class="batch-icon batch-icon-heart-full"></i> Like (4)
+                      </a>
+                      <a href="#">
+                        <i class="batch-icon batch-icon-speech-bubble-left-tip"></i> Comment (2)
+                      </a>
+                     <!-- EDIT BUTTON -->
+                     @if (editingPostId !== post.id) {
+                      <button type="button" class="btn btn-link p-0 text-decoration-none me-2" (click)="startEdit(post)">
+                        Edit
+                      </button>
+                      }
+                      <!-- SAVE / CANCEL -->
+                      @if (editingPostId === post.id) {
+                        <button type="button" class="btn btn-link p-0 text-decoration-none me-2" (click)="saveEdit(post)">
+                          Save
+                        </button>
+                        <button type="button" class="btn btn-link p-0 text-decoration-none me-2" (click)="cancelEdit()">
+                          Cancel
+                      </button>
+                      }
+                      <!-- EDIT BUTTON -->
+                     @if (editingPostId !== post.id) {
+                      <button type="button" class="btn btn-link p-0 text-decoration-none me-2" (click)="deletePost(post)">
+                        Delete
+                      </button>
+                      }
+                   </div>
                   </div>
                 </li>
               }
-
-
-
 
 
                 <li class="media">

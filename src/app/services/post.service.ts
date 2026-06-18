@@ -12,7 +12,15 @@ export class PostService {
     return this.http.get<Post[]>(`http://localhost:8080/api/postly/users/${userId}/post`);
   }
 
-  createPost$(userId: string, post: Post): Observable<Post> {
-    return this.http.post(`http://localhost:8080/api/postly/users/${userId}/post`, post);
+  createPost$(userId: string, postRequest: Post): Observable<Post> {
+    return this.http.post(`http://localhost:8080/api/postly/users/${userId}/post`, postRequest);
+  }
+
+  updatePost$(userId: string, postId: number, postRequest: Post): Observable<Post> {
+    return this.http.put(`http://localhost:8080/api/postly/users/${userId}/post/${postId}`, postRequest);
+  }
+
+  deletePost$(userId: string, postId: number): Observable<string> {
+    return this.http.delete(`http://localhost:8080/api/postly/users/${userId}/post/${postId}`, { responseType: 'text' });
   }
 }

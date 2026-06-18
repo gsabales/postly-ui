@@ -12,3 +12,15 @@ export const createPost = createAction('[Post] Create Post', props<{ userId: str
 export const createPostSuccess = createAction('[Post API] Create Post Success', props<{ post: Post }>());
 
 export const createPostFail = createAction('[Post API] Create Post Fail', props<{ error: string }>());
+
+export const updatePost = createAction('[Post] Update Post', props<{ userId: string, postId: number, updatedPost: Post }>());
+
+export const updatePostSuccess = createAction('[Post API] Update Post Success', props<{ updatedPost: Post }>());
+
+export const updatePostFail = createAction('[Post API] Update Post Fail', props<{ error: string }>());
+
+export const deletePost = createAction('[Post] Delete Post', props<{ userId: string, postId: number }>());
+
+export const deletePostSuccess = createAction('[Post API] Delete Post Success', props<{ message: string, postId: number }>());
+
+export const deletePostFail = createAction('[Post API] Delete Post Fail', props<{ error: string }>());

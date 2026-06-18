@@ -33,4 +33,28 @@ export class PostEffects {
       )
     )
   ));
+
+  public updatePost$ = createEffect(() => this.actions$.pipe(
+    ofType(PostActions.updatePost),
+    mergeMap(({ userId, postId, updatedPost }) =>
+      this.postService.updatePost$(userId, postId, updatedPost).pipe(
+        map(updatedPost => PostActions.updatePostSuccess({ updatedPost })),
+        catchError( error =>
+          of(PostActions.updatePostFail({ error: error.message }))
+        )
+      )
+    )
+  ));
+
+  public deletePost$ = createEffect(() => this.actions$.pipe(
+    ofType(PostActions.deletePost),
+    mergeMap(({ userId, postId }) =>
+      this.postService.deletePost$(userId, postId).pipe(
+        map(message => PostActions.deletePostSuccess({ message, postId })),
+        catchError( error =>
+          of(PostActions.deletePostFail({ error: error.message }))
+        )
+      )
+    )
+  ));
 }
