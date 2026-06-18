@@ -24,7 +24,7 @@ export class CommentBlock implements OnInit{
   ngOnInit(): void {
   }
 
-  postComment() {
+  postContent(): void {
     const post = this.postFormGroup.getRawValue();
     console.log(post);
     // sample user id: 1

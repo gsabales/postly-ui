@@ -24,7 +24,7 @@ export const postReducer = createReducer(
     error
   })),
 
-  on(PostActions.createPost, (state, { post }) => ({
+  on(PostActions.createPost, (state) => ({
     ...state,
     loading: true,
   })),
@@ -36,6 +36,42 @@ export const postReducer = createReducer(
   })),
 
   on(PostActions.createPostFail, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error
+  })),
+
+  on(PostActions.updatePost, (state) => ({
+    ...state,
+    loading: true,
+  })),
+
+  on(PostActions.updatePostSuccess, (state, { updatedPost }) => ({
+    ...state,
+    posts: state.posts.map(currentPost =>
+      currentPost.id === updatedPost.id ? updatedPost : currentPost
+    ),
+    loading: false,
+  })),
+
+  on(PostActions.updatePostFail, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error
+  })),
+
+  on(PostActions.deletePost, (state) => ({
+    ...state,
+    loading: true,
+  })),
+
+  on(PostActions.deletePostSuccess, (state, { message, postId }) => ({
+    ...state,
+    posts: state.posts.filter(post => post.id !== postId),
+    loading: false,
+  })),
+
+  on(PostActions.deletePostFail, (state, { error }) => ({
     ...state,
     loading: false,
     error
