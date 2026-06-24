@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {FormControl, FormGroup} from '@angular/forms';
-import {createPost} from '../../store/post.actions';
+import {createPost} from '../../store/post/post.actions';
 
 @Component({
   selector: 'app-comment-block',
