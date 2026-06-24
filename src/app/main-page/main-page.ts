@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {selectAllPosts} from '../store/post.selector';
+import {selectAllPosts} from '../store/post/post.selector';
 import {Observable} from 'rxjs';
 import {Post} from '../entities/post';
-import {deletePost, loadPosts, updatePost} from '../store/post.actions';
+import {deletePost, loadPosts, updatePost} from '../store/post/post.actions';
+import {AuthActions} from '../store/auth/auth.actions';
 
 @Component({
   selector: 'app-main-page',
@@ -48,5 +49,9 @@ export class MainPage implements OnInit{
 
   deletePost(post: Post): void {
     this.store.dispatch(deletePost( { userId: "1", postId: post.id! }));
+  }
+
+  logout(): void {
+    this.store.dispatch(AuthActions.logout());
   }
 }

@@ -13,11 +13,11 @@ export class PostService {
   }
 
   createPost$(userId: string, postRequest: Post): Observable<Post> {
-    return this.http.post(`http://localhost:8080/api/postly/users/${userId}/post`, postRequest);
+    return this.http.post<Post>(`http://localhost:8080/api/postly/users/${userId}/post`, postRequest);
   }
 
   updatePost$(userId: string, postId: number, postRequest: Post): Observable<Post> {
-    return this.http.put(`http://localhost:8080/api/postly/users/${userId}/post/${postId}`, postRequest);
+    return this.http.put<Post>(`http://localhost:8080/api/postly/users/${userId}/post/${postId}`, postRequest);
   }
 
   deletePost$(userId: string, postId: number): Observable<string> {

@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import { Actions, createEffect, ofType} from '@ngrx/effects';
-import { PostService } from '../services/post.service';
+import { PostService } from '../../services/post.service';
 import * as PostActions from './post.actions';
 import { catchError, map, mergeMap, of } from 'rxjs';
 
