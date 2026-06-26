@@ -1,4 +1,4 @@
-import {Post} from '../../entities/post';
+import { Post } from '../../entities/post';
 
 export interface PostState {
   posts: Post[];
@@ -13,5 +13,5 @@ export const initialState: PostState = {
   selectedPost: null,
 
   loading: false,
-  error: null
-}
+  error: null,
+};

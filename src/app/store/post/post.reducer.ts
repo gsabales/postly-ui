@@ -1,15 +1,14 @@
-import {createReducer, on} from '@ngrx/store';
-import * as PostActions from './post.actions'
-import {initialState} from './post.state';
+import { createReducer, on } from '@ngrx/store';
+import * as PostActions from './post.actions';
+import { initialState } from './post.state';
 
 export const postReducer = createReducer(
-
   initialState,
 
   on(PostActions.loadPosts, (state) => ({
     ...state,
     loading: true,
-    error: null
+    error: null,
   })),
 
   on(PostActions.loadPostsSuccess, (state, { posts }) => ({
@@ -21,7 +20,7 @@ export const postReducer = createReducer(
   on(PostActions.loadPostsFail, (state, { error }) => ({
     ...state,
     loading: false,
-    error
+    error,
   })),
 
   on(PostActions.createPost, (state) => ({
@@ -38,7 +37,7 @@ export const postReducer = createReducer(
   on(PostActions.createPostFail, (state, { error }) => ({
     ...state,
     loading: false,
-    error
+    error,
   })),
 
   on(PostActions.updatePost, (state) => ({
@@ -48,8 +47,8 @@ export const postReducer = createReducer(
 
   on(PostActions.updatePostSuccess, (state, { updatedPost }) => ({
     ...state,
-    posts: state.posts.map(currentPost =>
-      currentPost.id === updatedPost.id ? updatedPost : currentPost
+    posts: state.posts.map((currentPost) =>
+      currentPost.id === updatedPost.id ? updatedPost : currentPost,
     ),
     loading: false,
   })),
@@ -57,7 +56,7 @@ export const postReducer = createReducer(
   on(PostActions.updatePostFail, (state, { error }) => ({
     ...state,
     loading: false,
-    error
+    error,
   })),
 
   on(PostActions.deletePost, (state) => ({
@@ -65,15 +64,15 @@ export const postReducer = createReducer(
     loading: true,
   })),
 
-  on(PostActions.deletePostSuccess, (state, { message, postId }) => ({
+  on(PostActions.deletePostSuccess, (state, { postId }) => ({
     ...state,
-    posts: state.posts.filter(post => post.id !== postId),
+    posts: state.posts.filter((post) => post.id !== postId),
     loading: false,
   })),
 
   on(PostActions.deletePostFail, (state, { error }) => ({
     ...state,
     loading: false,
-    error
+    error,
   })),
 );

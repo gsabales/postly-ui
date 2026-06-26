@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface LoginRequest {
   username: string;
@@ -14,10 +14,7 @@ export interface LoginResponse {
   providedIn: 'root',
 })
 export class AuthService {
-
-  public constructor(
-    private http: HttpClient
-  ) {}
+  private readonly http = inject(HttpClient);
 
   public login(credentials: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>('http://localhost:8080/api/auth/login', credentials);
@@ -34,5 +31,4 @@ export class AuthService {
   public logout() {
     localStorage.removeItem('token');
   }
-
 }

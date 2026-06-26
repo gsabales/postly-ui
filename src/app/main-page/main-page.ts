@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {selectAllPosts} from '../store/post/post.selector';
-import {Observable} from 'rxjs';
-import {Post} from '../entities/post';
-import {deletePost, loadPosts, updatePost} from '../store/post/post.actions';
-import {AuthActions} from '../store/auth/auth.actions';
+import { Component, inject, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectAllPosts } from '../store/post/post.selector';
+import { Observable } from 'rxjs';
+import { Post } from '../entities/post';
+import { deletePost, loadPosts, updatePost } from '../store/post/post.actions';
+import { AuthActions } from '../store/auth/auth.actions';
 
 @Component({
   selector: 'app-main-page',
@@ -12,19 +12,16 @@ import {AuthActions} from '../store/auth/auth.actions';
   templateUrl: './main-page.html',
   styleUrl: './main-page.scss',
 })
-export class MainPage implements OnInit{
-
+export class MainPage implements OnInit {
   public posts$!: Observable<Array<Post>>;
   public isEditable: boolean = false;
   public editingPostId: number | null = null;
-  public contentMap: { [key: number]: string} = {};
+  public contentMap: { [key: number]: string } = {};
 
-  public constructor(
-    private readonly store: Store,
-  ) {}
+  private readonly store = inject(Store);
 
   ngOnInit() {
-    this.store.dispatch(loadPosts({ userId: "1" }));
+    this.store.dispatch(loadPosts({ userId: '1' }));
     this.posts$ = this.store.select(selectAllPosts);
   }
 
@@ -36,10 +33,10 @@ export class MainPage implements OnInit{
   saveEdit(post: Post): void {
     const updatedPost = {
       ...post,
-      content: this.contentMap[post.id!]
+      content: this.contentMap[post.id!],
     };
 
-    this.store.dispatch(updatePost({ userId: "1", postId: post.id!, updatedPost}));
+    this.store.dispatch(updatePost({ userId: '1', postId: post.id!, updatedPost }));
     this.editingPostId = null;
   }
 
@@ -48,7 +45,7 @@ export class MainPage implements OnInit{
   }
 
   deletePost(post: Post): void {
-    this.store.dispatch(deletePost( { userId: "1", postId: post.id! }));
+    this.store.dispatch(deletePost({ userId: '1', postId: post.id! }));
   }
 
   logout(): void {

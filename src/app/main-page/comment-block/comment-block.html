@@ -1,11 +1,22 @@
 <div class="comment-block">
   <form class="form-group" [formGroup]="postFormGroup" (ngSubmit)="postContent()">
-    <textarea class="form-control" id="comment-textarea" rows="2" placeholder="Enter your comment here..." formControlName="content">
+    <textarea
+      class="form-control"
+      id="comment-textarea"
+      rows="2"
+      placeholder="Enter your comment here..."
+      formControlName="content"
+    >
     </textarea>
     <div class="media-feed-control clearfix">
-      <button type="submit" class="btn btn-secondary btn-sm comment-reply float-right waves-effect waves-light">Post</button>
+      <button
+        type="submit"
+        class="btn btn-secondary btn-sm comment-reply float-right waves-effect waves-light"
+      >
+        Post
+      </button>
       <a href="#" data-toggle="tooltip" title="" data-original-title="Add Picture">
-          <i class="batch-icon batch-icon-image"></i>
+        <i class="batch-icon batch-icon-image"></i>
       </a>
     </div>
   </form>
